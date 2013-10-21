@@ -17,11 +17,13 @@ var person =	{
 								],
 				"mentions": [	],
 				"friends":[],
-				"skills": {
-					id:1,
-					name: 'JavaScript',
-					experience: 'Intermediate'
+				"skills": [
+				{
+					"id":4,
+					"name": 'JavaScript',
+					"experience": 'Intermediate'
 				}
+				]
 
 				};
 
@@ -90,15 +92,21 @@ app.configure(function(){
 	// console.log(person.skills);
 	// });
 
-	app.param('skills', function(request,response, next, id){
-		if(request.skills = user[id]){
-			next();
-		}
-		else {
-			next(new Error('failed to find skills'));
-		}
-	});
 
+	app.get('/skills/:id',function(request,response){
+	var skill = person.skills[request.params.id];
+		for (var i = 0; i < person.skills.length; i++){
+			if(person.skills[i] == skill) {
+				person.skills[i].id = request.body.name;
+				response.send(person.skills[i]);
+			}
+		}
+
+		response.send(skill);
+		console.log(skill);
+		// response.send(request.params.id);
+		// console.log(person.skills);
+	});
 
 	// app.get('/person/:first/:second/:third',function(request,response){
 	// console.log('param vars');
