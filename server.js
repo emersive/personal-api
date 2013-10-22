@@ -107,9 +107,9 @@ app.configure(function(){
 	// Post Requests
 
 	app.post('/mentions',function(request,response){
+		person.mentions.push(request.body); // I added mentions, because without it I learned that it would just create new arrays within mentions.
 		response.send('test');
-		person.mentions.push(request.body.mentions); // I added mentions, because without it I learned that it would just create new arrays within mentions.
-		console.log("test");
+		console.log("mention added");
 
 		app.get('/mentions',function(request,response){
 		response.send(person.mentions);
@@ -130,7 +130,7 @@ app.configure(function(){
 	app.post('/skills',function(request,response){
 		person.skills.push(request.body);
 		res.send(person.skills);
-		console.log("skill posted");
+		console.log("skill added");
 	});
 
 
