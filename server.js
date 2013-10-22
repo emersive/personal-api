@@ -118,8 +118,8 @@ app.configure(function(){
 	});
 
 	app.post('/friends',function(request,response){
+		person.friends.push(request.body);
 		response.send('test');
-		person.friends.push(request.body.friends);
 
 		app.get('/friends',function(request,response){
 		response.send(person.friends);
