@@ -96,7 +96,6 @@ app.configure(function(){
         }
         response.end();
         console.log('skills served');
-
 });
 
 	// app.get('/person/:first/:second/:third',function(request,response){
@@ -129,9 +128,25 @@ app.configure(function(){
 
 	app.post('/skills',function(request,response){
 		person.skills.push(request.body);
-		res.send(person.skills);
+		response.send(person.skills);
 		console.log("skill added");
 	});
+
+	// Put Request
+	app.put('/skills/:id', function(request, response){
+        var skill = request.params.id;
+        for(var i = 0; i < person.skills.length; i++){
+                if(person.skills[i].id == skill){
+              	person.skills[i].id = request.body.id;
+                person.skills[i].name = request.body.name;
+                person.skills[i].experience = request.body.experience;
+                response.send(person.skills[i]);
+                }
+        }
+        response.end();
+        console.log('skill edited');
+});
+
 
 
 app.listen(port);
