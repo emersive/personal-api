@@ -87,26 +87,17 @@ app.configure(function(){
 
 	//get by id
 
-	// app.get('/skills/:id',function(request,response){
-	// response.send(person.skills);
-	// console.log(person.skills);
-	// });
+	app.get('/skills/:id', function(request, response){
+        var skill = request.params.id;
+        for(var i = 0; i < person.skills.length; i++){
+                if(person.skills[i].id == skill){
+                        response.send(person.skills[i]);
+                }
+        }
+        response.end();
+        console.log('skills served');
 
-
-	app.get('/skills/:id',function(request,response){
-	var skill = person.skills[request.params.id];
-		for (var i = 0; i < person.skills.length; i++){
-			if(person.skills[i] == skill) {
-				person.skills[i].id = request.body.name;
-				response.send(person.skills[i]);
-			}
-		}
-
-		response.send(skill);
-		console.log(skill);
-		// response.send(request.params.id);
-		// console.log(person.skills);
-	});
+});
 
 	// app.get('/person/:first/:second/:third',function(request,response){
 	// console.log('param vars');
