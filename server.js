@@ -119,8 +119,7 @@ app.configure(function(){
 
 	app.post('/friends',function(request,response){
 		response.send('test');
-		person.friends.push(request.body.friends); // I added mentions, because without it I learned that it would just create new arrays within mentions.
-		console.log("test");
+		person.friends.push(request.body.friends);
 
 		app.get('/friends',function(request,response){
 		response.send(person.friends);
@@ -129,19 +128,10 @@ app.configure(function(){
 	});
 
 	app.post('/skills',function(request,response){
-		response.send('test');
-		person.skills.push(request.body.skills); // I added mentions, because without it I learned that it would just create new arrays within mentions.
-		console.log("test");
-
-		app.get('/skills',function(request,response){
-		response.send(person.skills);
-		console.log(person.skills);
-		});
+		person.skills.push(request.body);
+		res.send(person.skills);
+		console.log("skill posted");
 	});
-
-
-
-
 
 
 app.listen(port);
